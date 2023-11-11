@@ -50,15 +50,90 @@ class _HomePageState extends State<HomePage> {
     sortAppList(); // Sort the list
   }
 
-  void handleAppEdit(AppModel editedApp, int index) {
-    Data.appList[index] = editedApp; // Replace the old entry with the new one
-    //sort app list
+  void handleAppEdit(AppModel editedApp, int index, {bool delete = false}) {
+    if (delete) {
+      // Remove the app from the lists
+      Data.appList.removeAt(index);
+      sortedAppList.removeAt(index);
+    } else {
+      // Existing logic to replace the app
+      Data.appList[index] = editedApp;
+      sortedAppList[index] = editedApp;
+    }
 
+    // Re-sort and update the list
     Data.appList.sort((a, b) => a.requiredSteps.compareTo(b.requiredSteps));
-
-    updateAndSortAppList(Data.appList); // Re-sort and update the list
+    updateAndSortAppList(Data.appList);
 
     setState(() {}); // Update the UI
+  }
+
+  void addNewApp() {
+    // Initial values for the new app
+    String newName = '';
+    int newSteps = 0;
+    String newAndroidPackageName = '';
+    String newIosUrlScheme = '';
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Add New App'),
+          content: SingleChildScrollView(
+            // Use SingleChildScrollView to avoid overflow
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TextField(
+                  onChanged: (value) => newName = value,
+                  decoration: const InputDecoration(hintText: 'App Name'),
+                ),
+                TextField(
+                  onChanged: (value) => newSteps = int.tryParse(value) ?? 0,
+                  decoration: const InputDecoration(hintText: 'Required Steps'),
+                  keyboardType: TextInputType.number,
+                ),
+                TextField(
+                  onChanged: (value) => newAndroidPackageName = value,
+                  decoration:
+                      const InputDecoration(hintText: 'Android Package Name'),
+                ),
+                TextField(
+                  onChanged: (value) => newIosUrlScheme = value,
+                  decoration: const InputDecoration(hintText: 'iOS URL Scheme'),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: const Text('Add'),
+              onPressed: () {
+                AppModel newApp = AppModel(
+                  name: newName,
+                  androidPackageName: newAndroidPackageName,
+                  iosUrlScheme: newIosUrlScheme,
+                  requiredSteps: newSteps,
+                );
+                // Add the new app to the list
+                setState(() {
+                  sortedAppList.add(newApp);
+                  Data.appList.add(
+                      newApp); // If you want to update the main data source as well
+                  sortAppList(); // Sort the list again after adding the new app
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -109,12 +184,8 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() => stepAmount += 1000);
-
-          //setState(() => stepAmount = 0);
-        },
-        child: const Icon(Icons.refresh),
+        onPressed: addNewApp,
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -131,7 +202,7 @@ class AppListWidget extends StatelessWidget {
 
   final List<AppModel> appList;
   final int stepAmount;
-  final Function(AppModel, int) onAppEdit;
+  final Function(AppModel, int, {bool delete}) onAppEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -180,13 +251,13 @@ class AppListWidget extends StatelessWidget {
 
   void editApp(BuildContext context, int index) {
     AppModel app = appList[index];
-    // Show a dialog or another UI to edit the app details
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
         String newName = app.name;
         int newSteps = app.requiredSteps;
-        // Create a dialog with form fields to edit name and required steps
+
         return AlertDialog(
           title: const Text('Edit App'),
           content: Column(
@@ -225,6 +296,16 @@ class AppListWidget extends StatelessWidget {
                 // Call the callback to notify the HomePage
                 onAppEdit(updatedApp, index);
                 Navigator.of(context).pop();
+              },
+            ),
+            // New Delete button
+            TextButton(
+              child: const Text('Delete', style: TextStyle(color: Colors.red)),
+              onPressed: () {
+                // Logic to delete the app
+                Navigator.of(context).pop(); // Close the dialog
+                onAppEdit(app, index,
+                    delete: true); // Call the callback with delete flag
               },
             ),
           ],
