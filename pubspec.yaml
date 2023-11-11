@@ -40,6 +40,9 @@ dependencies:
 
   external_app_launcher: ^3.1.0
 
+  curved_navigation_bar: ^1.0.3
+
+
 
 
 dev_dependencies:

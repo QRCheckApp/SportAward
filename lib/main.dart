@@ -1,5 +1,7 @@
-import 'package:dosport/home_page.dart';
 import 'package:flutter/material.dart';
+
+import 'pres/pages/scaffold_page.dart';
+import 'style.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +15,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primarySwatch: SCol.createMaterialColor(SCol.primary),
+        appBarTheme: AppBarTheme(
+            titleTextStyle: TextStyle(fontSize: 30, color: SCol.onBackground)),
+        textTheme: TextTheme(
+          headlineMedium: TextStyle(color: SCol.onBackground),
+          titleLarge: TextStyle(color: SCol.onBackground),
+          displayMedium: TextStyle(color: SCol.onBackground),
+        ),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const ScaffoldPage(),
     );
   }
 }
-

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../app_model.dart';
+import '../../data/app_model.dart';
 
 class LeadingIcon extends StatelessWidget {
   const LeadingIcon({
