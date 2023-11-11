@@ -36,30 +36,27 @@ class FriendsPage extends StatelessWidget {
     }
 
     return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView.separated(
-              padding: const EdgeInsets.all(8),
-              itemCount: friends.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  color: SCol.grey,
-                  child: ListTile(
-                    minVerticalPadding: 20,
-                    leading: placeIcon(index),
-                    title: Text(friends[index].username,
-                        style: Theme.of(context).textTheme.titleLarge),
-                    trailing: Text(
-                      '${friends[index].steps}\'',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
+        body: ListView.separated(
+            padding: const EdgeInsets.all(8),
+            itemCount: friends.length,
+            itemBuilder: (context, index) {
+              return Card(
+                color: SCol.grey,
+                child: ListTile(
+                  minVerticalPadding: 20,
+                  leading: placeIcon(index),
+                  title: Text(friends[index].username,
+                      style: Theme.of(context).textTheme.titleLarge),
+                  trailing: Text(
+                    '${friends[index].steps}\'',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const SizedBox(height: 4);
-              }),
-        ),
+                ),
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const SizedBox(height: 4);
+            }),
         floatingActionButton: FloatingActionButton(
           backgroundColor: SCol.primary,
           shape: const CircleBorder(),

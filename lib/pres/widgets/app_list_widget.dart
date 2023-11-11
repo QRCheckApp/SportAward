@@ -20,7 +20,7 @@ class AppListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(8),
       shrinkWrap: true,
       itemCount: appList.length,
       itemBuilder: (context, index) {

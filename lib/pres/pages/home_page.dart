@@ -69,12 +69,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Expanded(
+            flex: 2,
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -91,13 +91,16 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            AppListWidget(
+          ),
+          Expanded(
+            flex: 3,
+            child: AppListWidget(
               appList: sortedAppList,
               stepAmount: stepAmount,
               onAppEdit: handleAppEdit,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
