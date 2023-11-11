@@ -34,7 +34,7 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
               onPressed: () {
                 showLicensePage(
                   context: context,
-                  applicationName: "Junction23 \n © QrCheck",
+                  applicationName: "Junction23 \n © QrCheck & Hoang An Nguyen",
                 );
               },
               icon: const Icon(Icons.settings),

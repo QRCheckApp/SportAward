@@ -72,6 +72,12 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
+  assets:
+    - assets/YouTube.png
+    - assets/Instagram.png
+    - assets/Snapchat.png
+    - assets/TikTok.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

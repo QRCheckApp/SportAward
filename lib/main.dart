@@ -15,6 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        cardTheme: CardTheme(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
         primarySwatch: SCol.createMaterialColor(SCol.primary),
         appBarTheme: AppBarTheme(
             titleTextStyle: TextStyle(fontSize: 30, color: SCol.onBackground)),

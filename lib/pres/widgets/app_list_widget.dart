@@ -27,9 +27,12 @@ class AppListWidget extends StatelessWidget {
         return Card(
           color: SCol.grey,
           child: ListTile(
+            contentPadding: const EdgeInsets.only(left: 8, right: 16),
             title: Text(appList[index].name),
-            //Edit this line
-
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(appList[index].iconPath),
+            ),
             trailing: LeadingIcon(
                 stepAmount: stepAmount, appList: appList, index: index),
             subtitle: Text(
@@ -106,6 +109,7 @@ class AppListWidget extends StatelessWidget {
                   androidPackageName: app.androidPackageName,
                   iosUrlScheme: app.iosUrlScheme,
                   requiredSteps: newSteps,
+                  iconPath: app.iconPath,
                 );
                 // Call the callback to notify the HomePage
                 onAppEdit(updatedApp, index);

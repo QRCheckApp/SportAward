@@ -8,6 +8,7 @@ class Data {
       androidPackageName: "com.google.android.youtube",
       iosUrlScheme: "youtube://",
       requiredSteps: 1000,
+      iconPath: "assets/YouTube.png",
     ),
     //Instagram
     AppModel(
@@ -15,6 +16,7 @@ class Data {
       androidPackageName: "com.instagram.android",
       iosUrlScheme: "instagram://",
       requiredSteps: 3000,
+      iconPath: "assets/Instagram.png",
     ),
     //Snapchat
     AppModel(
@@ -22,6 +24,7 @@ class Data {
       androidPackageName: "com.snapchat.android",
       iosUrlScheme: "snapchat://",
       requiredSteps: 5000,
+      iconPath: "assets/Snapchat.png",
     ),
     //TiKTok
     AppModel(
@@ -29,6 +32,7 @@ class Data {
       androidPackageName: "com.zhiliaoapp.musically",
       iosUrlScheme: "tiktok://",
       requiredSteps: 10000,
+      iconPath: "assets/TikTok.png",
     ),
   ];
 }
