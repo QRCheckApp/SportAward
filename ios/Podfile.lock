@@ -1,19 +1,25 @@
 PODS:
+  - external_app_launcher (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - sensors_plus (0.0.1):
     - Flutter
 
 DEPENDENCIES:
+  - external_app_launcher (from `.symlinks/plugins/external_app_launcher/ios`)
   - Flutter (from `Flutter`)
   - sensors_plus (from `.symlinks/plugins/sensors_plus/ios`)
 
 EXTERNAL SOURCES:
+  external_app_launcher:
+    :path: ".symlinks/plugins/external_app_launcher/ios"
   Flutter:
     :path: Flutter
   sensors_plus:
     :path: ".symlinks/plugins/sensors_plus/ios"
 
 SPEC CHECKSUMS:
+  external_app_launcher: ad55ac844aa21f2d2197d7cec58ff0d0dc40bbc0
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   sensors_plus: 5717760720f7e6acd96fdbd75b7428f5ad755ec2
 

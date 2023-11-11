@@ -1,13 +1,13 @@
 class AppModel {
   final String name;
-  final String androidUrl;
-  final String iosUrl;
+  final String androidPackageName;
+  final String iosUrlScheme;
   final int requiredSteps;
 
   AppModel({
     required this.name,
-    required this.androidUrl,
-    required this.iosUrl,
+    required this.androidPackageName,
+    required this.iosUrlScheme,
     required this.requiredSteps,
   });
 }
