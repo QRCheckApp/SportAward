@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     // Initialize the ShakeDetector
     detector = ShakeDetector.autoStart(
-      onPhoneShake: () => setState(() => stepAmount += 1000),
+      onPhoneShake: () => setState(() => stepAmount += Data.stepIncrement),
     );
 
     // Initialize the app list

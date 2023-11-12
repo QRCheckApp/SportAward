@@ -1,6 +1,8 @@
 import 'app_model.dart';
 
 class Data {
+  static const int stepIncrement = 100;
+
   static List<AppModel> appList = [
     //YouTube
     AppModel(
