@@ -1,7 +1,19 @@
+import 'dart:math';
+
 import 'app_model.dart';
 
 class Data {
-  static const int stepIncrement = 100;
+  static int stepAmount = 4583;
+  static bool stepSwitch = false;
+
+  static int stepIncrement() {
+    if (stepSwitch == false) {
+      // Random int between 100 and 1000
+      return (100 + Random().nextInt(1000 - 100));
+    } else {
+      return 100;
+    }
+  }
 
   static List<AppModel> appList = [
     //YouTube

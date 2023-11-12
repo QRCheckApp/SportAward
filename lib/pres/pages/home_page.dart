@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   ShakeDetector? detector;
 
-  int stepAmount = 0;
   List<AppModel> sortedAppList = [];
 
   @override
@@ -23,7 +22,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     // Initialize the ShakeDetector
     detector = ShakeDetector.autoStart(
-      onPhoneShake: () => setState(() => stepAmount += Data.stepIncrement),
+      onPhoneShake: () =>
+          setState(() => Data.stepAmount += Data.stepIncrement()),
     );
 
     // Initialize the app list
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 Text(
-                  "$stepAmount ",
+                  "${Data.stepAmount} ",
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 Text(
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
             flex: 3,
             child: AppListWidget(
               appList: sortedAppList,
-              stepAmount: stepAmount,
+              stepAmount: Data.stepAmount,
               onAppEdit: handleAppEdit,
             ),
           ),
